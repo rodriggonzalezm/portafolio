@@ -6,6 +6,7 @@
   <title>Rodrigo González - Fullstack Dev</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
     :root {
       --bg-color: #000;
@@ -26,14 +27,8 @@
       overflow-x: hidden;
       transition: all 0.4s ease-in-out;
     }
-    .console {
-      white-space: pre-line;
-      font-size: 1rem;
-      text-shadow: 0 0 5px var(--shadow-color);
-    }
     .glitch {
       position: relative;
-      color: var(--text-color);
     }
     .glitch::before,
     .glitch::after {
@@ -55,41 +50,42 @@
       z-index: -1;
     }
     @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
       10% { clip: rect(0, 9999px, 100%, 0); transform: translate(-2px, -2px); }
-      20% { transform: translate(2px, -1px); }
-      100% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+      20% { clip: rect(0, 9999px, 100%, 0); transform: translate(2px, -1px); }
     }
     @keyframes glitchBottom {
-      0% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
       10% { clip: rect(0, 9999px, 100%, 0); transform: translate(2px, 2px); }
-      20% { transform: translate(-2px, 1px); }
-      100% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+      20% { clip: rect(0, 9999px, 100%, 0); transform: translate(-2px, 1px); }
     }
     .hidden-content {
       display: none;
     }
+    .project-card {
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .project-card:hover {
+      transform: rotateX(5deg) rotateY(5deg) scale(1.03);
+      box-shadow: 0 20px 30px rgba(0, 255, 170, 0.3);
+    }
   </style>
 </head>
-<body data-theme="dark">
+<body data-theme="dark" class="transition duration-700 ease-in-out">
 
 <canvas id="particles" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
 
-<!-- Consola de carga -->
-<div id="consoleScreen" class="console p-6 h-screen flex items-center justify-center flex-col z-10 relative">
-  <div id="consoleText" class="text-lg leading-relaxed max-w-2xl text-center"></div>
+<div id="consoleScreen" class="console p-6 h-screen flex items-center justify-center flex-col z-10 relative text-center text-lg leading-relaxed max-w-2xl mx-auto">
+  <div id="consoleText"></div>
 </div>
 
-<!-- Contenido principal -->
 <div id="mainContent" class="hidden-content z-20 relative">
 
-  <!-- Botón Tema -->
+  <!-- TOGGLE THEME -->
   <div class="fixed top-4 right-4 z-50">
     <button id="toggleTheme" class="bg-green-500 hover:bg-green-600 text-black px-4 py-2 rounded shadow transition">🌗 Cambiar Tema</button>
   </div>
 
   <!-- HERO -->
-  <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4">
+  <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4" data-aos="fade-up">
     <div>
       <h1 class="text-5xl sm:text-6xl font-bold glitch" data-text="Rodrigo González">Rodrigo González</h1>
       <p class="mt-4 text-2xl text-green-400">Fullstack Developer</p>
@@ -102,26 +98,26 @@
   </section>
 
   <!-- PROYECTOS -->
-  <section id="proyectos" class="py-20 bg-gray-900 text-white px-4">
+  <section id="proyectos" class="py-20 bg-gray-900 text-white px-4" data-aos="fade-up">
     <h2 class="text-3xl text-center mb-12 font-bold">Proyectos Destacados</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <a href="https://www.kibirka.com.ar" target="_blank" class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 transition transform hover:scale-105 block">
+      <a href="https://www.kibirka.com.ar" target="_blank" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
         <h3 class="text-xl font-bold">Kibirka E-commerce</h3>
-        <p class="text-gray-400 mt-2">Tienda online sustentable con Django + Python. Carrito, geolocalización y diseño responsive.</p>
+        <p class="text-gray-400 mt-2">Tienda sustentable con Django, carrito, geolocalización y diseño responsive.</p>
       </a>
-      <a href="#hero" class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 transition transform hover:scale-105 block">
+      <a href="#hero" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
         <h3 class="text-xl font-bold">Deloestegrowshop</h3>
-        <p class="text-gray-400 mt-2">Growshop profesional con carrito modal, animaciones y visuales impactantes.</p>
+        <p class="text-gray-400 mt-2">Growshop profesional con carrito modal, animaciones y diseño impactante.</p>
       </a>
-      <a href="https://www.ryrlogistics.cl" target="_blank" class="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 transition transform hover:scale-105 block">
+      <a href="https://www.ryrlogistics.cl" target="_blank" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
         <h3 class="text-xl font-bold">RYR Logistics</h3>
-        <p class="text-gray-400 mt-2">Portal web para arriendo de camionetas y gestión logística con interfaz administrable.</p>
+        <p class="text-gray-400 mt-2">Portal para arriendo de camionetas y gestión logística.</p>
       </a>
     </div>
   </section>
 
   <!-- STACK -->
-  <section id="stack" class="py-20 bg-black text-white px-4">
+  <section id="stack" class="py-20 bg-black text-white px-4" data-aos="fade-up">
     <h2 class="text-3xl text-center mb-12 font-bold">Stack Tecnológico</h2>
     <div class="flex flex-wrap justify-center gap-6 text-green-400 text-4xl">
       <i class="fab fa-python" title="Python"></i>
@@ -135,7 +131,7 @@
   </section>
 
   <!-- CONTACTO -->
-  <section id="contacto" class="py-20 bg-gray-900 text-white px-4 text-center">
+  <section id="contacto" class="py-20 bg-gray-900 text-white px-4 text-center" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-6">Contacto</h2>
     <p class="text-gray-400 mb-4">¿Querés trabajar conmigo? Mandame un mensaje 📩</p>
     <a href="https://wa.me/5492991234567" target="_blank" class="text-green-400 text-lg font-semibold underline">Contactar por WhatsApp</a>
@@ -147,11 +143,12 @@
   </footer>
 </div>
 
-<!-- AUDIO -->
 <audio id="typingSound" src="https://cdn.pixabay.com/audio/2022/03/22/audio_44c8bfb63f.mp3"></audio>
 
-<!-- JS Carga -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+  AOS.init();
+
   const lines = [
     "Rodrigo González - Fullstack Developer",
     "Iniciando sistemas...",
@@ -160,6 +157,7 @@
     "Conectando base de datos Postgres...",
     "✅ Sistema cargado. Bienvenido al universo de Rodrigo."
   ];
+
   const typingSound = document.getElementById("typingSound");
   const consoleText = document.getElementById("consoleText");
   const mainContent = document.getElementById("mainContent");
@@ -198,10 +196,7 @@
   }
 
   window.onload = startTyping;
-</script>
 
-<!-- JS Partículas -->
-<script>
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   function resizeCanvas() {
@@ -212,7 +207,6 @@
   resizeCanvas();
 
   let particles = [];
-
   class Particle {
     constructor() {
       this.x = Math.random() * canvas.width;
@@ -253,10 +247,7 @@
 
   initParticles();
   animateParticles();
-</script>
 
-<!-- JS Tema -->
-<script>
   const toggleBtn = document.getElementById("toggleTheme");
   toggleBtn.addEventListener("click", () => {
     const current = document.body.getAttribute("data-theme");
