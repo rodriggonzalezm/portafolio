@@ -102,7 +102,7 @@
       border-radius: 6px;
       text-align: left;
       white-space: pre-wrap;
-      /* ✅ Esto respeta todos los espacios */
+      /* 💡 esto es la clave para respetar todo */
       width: 100%;
       max-width: 700px;
       box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
@@ -236,7 +236,7 @@
 
     function typeLine(line, callback) {
       if (line === "") {
-        consoleText.innerText += "\n";
+        consoleText.textContent += "\n";
         setTimeout(callback, 300);
         return;
       }
@@ -244,17 +244,19 @@
       let charIndex = 0;
       typingSound.currentTime = 0;
       typingSound.play();
+
       const interval = setInterval(() => {
         if (charIndex < line.length) {
-          consoleText.innerText += line[charIndex++];
+          consoleText.textContent += line[charIndex++];
         } else {
           clearInterval(interval);
-          consoleText.innerText += "\n";
+          consoleText.textContent += "\n";
           typingSound.pause();
           setTimeout(callback, 500);
         }
       }, 40);
     }
+
 
 
     function startTyping() {
