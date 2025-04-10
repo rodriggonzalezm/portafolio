@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rodrigo González - Fullstack Dev</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -14,12 +15,14 @@
       --shadow-color: #00ffae;
       --particle-color: #ffffff;
     }
+
     [data-theme="light"] {
       --bg-color: #f9f9f9;
       --text-color: #111;
       --shadow-color: #555;
       --particle-color: #000000;
     }
+
     body {
       background: var(--bg-color);
       color: var(--text-color);
@@ -27,9 +30,11 @@
       overflow-x: hidden;
       transition: all 0.4s ease-in-out;
     }
+
     .glitch {
       position: relative;
     }
+
     .glitch::before,
     .glitch::after {
       content: attr(data-text);
@@ -39,241 +44,294 @@
       overflow: hidden;
       clip: rect(0, 900px, 0, 0);
     }
+
     .glitch::before {
       animation: glitchTop 1s infinite linear alternate-reverse;
       color: #0ff;
       z-index: -1;
     }
+
     .glitch::after {
       animation: glitchBottom 1s infinite linear alternate-reverse;
       color: #f0f;
       z-index: -1;
     }
+
     @keyframes glitchTop {
-      10% { clip: rect(0, 9999px, 100%, 0); transform: translate(-2px, -2px); }
-      20% { clip: rect(0, 9999px, 100%, 0); transform: translate(2px, -1px); }
+      10% {
+        clip: rect(0, 9999px, 100%, 0);
+        transform: translate(-2px, -2px);
+      }
+
+      20% {
+        clip: rect(0, 9999px, 100%, 0);
+        transform: translate(2px, -1px);
+      }
     }
+
     @keyframes glitchBottom {
-      10% { clip: rect(0, 9999px, 100%, 0); transform: translate(2px, 2px); }
-      20% { clip: rect(0, 9999px, 100%, 0); transform: translate(-2px, 1px); }
+      10% {
+        clip: rect(0, 9999px, 100%, 0);
+        transform: translate(2px, 2px);
+      }
+
+      20% {
+        clip: rect(0, 9999px, 100%, 0);
+        transform: translate(-2px, 1px);
+      }
     }
+
     .hidden-content {
       display: none;
     }
+
     .project-card {
       transition: transform 0.4s, box-shadow 0.4s;
     }
+
     .project-card:hover {
       transform: rotateX(5deg) rotateY(5deg) scale(1.03);
       box-shadow: 0 20px 30px rgba(0, 255, 170, 0.3);
     }
+
+    #consoleText {
+      font-family: Consolas, monospace;
+      color: #33ff33;
+      background-color: #000;
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: left;
+      white-space: pre-line;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
+    }
   </style>
 </head>
+
 <body data-theme="dark" class="transition duration-700 ease-in-out">
 
-<canvas id="particles" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
+  <canvas id="particles" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
 
-<div id="consoleScreen" class="console p-6 h-screen flex items-center justify-center flex-col z-10 relative text-center text-lg leading-relaxed max-w-2xl mx-auto">
-  <div id="consoleText"></div>
-</div>
-
-<div id="mainContent" class="hidden-content z-20 relative">
-
-  <!-- TOGGLE THEME -->
-  <div class="fixed top-4 right-4 z-50">
-    <button id="toggleTheme" class="bg-green-500 hover:bg-green-600 text-black px-4 py-2 rounded shadow transition">🌗 Cambiar Tema</button>
+  <div id="consoleScreen"
+    class="console p-6 h-screen flex items-center justify-center flex-col z-10 relative text-center text-lg leading-relaxed max-w-2xl mx-auto">
+    <div id="consoleText"></div>
   </div>
 
-  <!-- HERO -->
-  <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4" data-aos="fade-up">
-    <div>
-      <h1 class="text-5xl sm:text-6xl font-bold glitch" data-text="Rodrigo González">Rodrigo González</h1>
-      <p class="mt-4 text-2xl text-green-400">Fullstack Developer</p>
-      
-      <!-- Redes sociales -->
-      <div class="mt-6 flex justify-center space-x-6 text-2xl text-green-400">
-        <a href="https://www.linkedin.com/in/rodrigo-gonzalez-61954b35b/" target="_blank" aria-label="LinkedIn" class="hover:text-white transition">
-          <i class="fab fa-linkedin"></i>
+  <div id="mainContent" class="hidden-content z-20 relative">
+
+    <!-- TOGGLE THEME -->
+    <div class="fixed top-4 right-4 z-50">
+      <button id="toggleTheme" class="bg-green-500 hover:bg-green-600 text-black px-4 py-2 rounded shadow transition">🌗
+        Cambiar Tema</button>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4" data-aos="fade-up">
+      <div>
+        <h1 class="text-5xl sm:text-6xl font-bold glitch" data-text="Rodrigo González">Rodrigo González</h1>
+        <p class="mt-4 text-2xl text-green-400">Fullstack Developer</p>
+
+        <!-- Redes sociales -->
+        <div class="mt-6 flex justify-center space-x-6 text-2xl text-green-400">
+          <a href="https://www.linkedin.com/in/rodrigo-gonzalez-61954b35b/" target="_blank" aria-label="LinkedIn"
+            class="hover:text-white transition">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/rodriggonzalezm" target="_blank" aria-label="GitHub"
+            class="hover:text-white transition">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+
+        <p class="mt-2 text-lg">Python, Django, JS, CSS, SQL, Cloud ☁️</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="#proyectos"
+            class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded text-black font-semibold transition">Ver
+            Proyectos</a>
+          <a href="#contacto"
+            class="border border-green-400 px-6 py-2 rounded text-green-400 hover:bg-green-400 hover:text-black transition">Contacto</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="py-20 bg-gray-900 text-white px-4" data-aos="fade-up">
+      <h2 class="text-3xl text-center mb-12 font-bold">Proyectos Destacados</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <a href="https://www.kibirka.com.ar" target="_blank"
+          class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
+          <h3 class="text-xl font-bold">Kibirka E-commerce</h3>
+          <p class="text-gray-400 mt-2">Tienda sustentable con Django, carrito, geolocalización y diseño responsive.</p>
         </a>
-        <a href="https://github.com/rodriggonzalezm" target="_blank" aria-label="GitHub" class="hover:text-white transition">
-          <i class="fab fa-github"></i>
+        <a href="#hero" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
+          <h3 class="text-xl font-bold">Deloestegrowshop</h3>
+          <p class="text-gray-400 mt-2">Growshop profesional con carrito modal, animaciones y diseño impactante.</p>
+        </a>
+        <a href="https://www.ryrlogistics.cl" target="_blank"
+          class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
+          <h3 class="text-xl font-bold">RYR Logistics</h3>
+          <p class="text-gray-400 mt-2">Portal para arriendo de camionetas y gestión logística.</p>
         </a>
       </div>
+    </section>
 
-      <p class="mt-2 text-lg">Python, Django, JS, CSS, SQL, Cloud ☁️</p>
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <a href="#proyectos" class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded text-black font-semibold transition">Ver Proyectos</a>
-        <a href="#contacto" class="border border-green-400 px-6 py-2 rounded text-green-400 hover:bg-green-400 hover:text-black transition">Contacto</a>
+    <!-- STACK -->
+    <section id="stack" class="py-20 bg-black text-white px-4" data-aos="fade-up">
+      <h2 class="text-3xl text-center mb-12 font-bold">Stack Tecnológico</h2>
+      <div class="flex flex-wrap justify-center gap-6 text-green-400 text-4xl">
+        <i class="fab fa-python" title="Python"></i>
+        <i class="fab fa-js" title="JavaScript"></i>
+        <i class="fab fa-html5" title="HTML5"></i>
+        <i class="fab fa-css3-alt" title="CSS3"></i>
+        <i class="fab fa-docker" title="Docker"></i>
+        <i class="fab fa-github" title="GitHub"></i>
+        <i class="fas fa-database" title="Bases de Datos"></i>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROYECTOS -->
-  <section id="proyectos" class="py-20 bg-gray-900 text-white px-4" data-aos="fade-up">
-    <h2 class="text-3xl text-center mb-12 font-bold">Proyectos Destacados</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <a href="https://www.kibirka.com.ar" target="_blank" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
-        <h3 class="text-xl font-bold">Kibirka E-commerce</h3>
-        <p class="text-gray-400 mt-2">Tienda sustentable con Django, carrito, geolocalización y diseño responsive.</p>
-      </a>
-      <a href="#hero" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
-        <h3 class="text-xl font-bold">Deloestegrowshop</h3>
-        <p class="text-gray-400 mt-2">Growshop profesional con carrito modal, animaciones y diseño impactante.</p>
-      </a>
-      <a href="https://www.ryrlogistics.cl" target="_blank" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
-        <h3 class="text-xl font-bold">RYR Logistics</h3>
-        <p class="text-gray-400 mt-2">Portal para arriendo de camionetas y gestión logística.</p>
-      </a>
-    </div>
-  </section>
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-20 bg-gray-900 text-white px-4 text-center" data-aos="fade-up">
+      <h2 class="text-3xl font-bold mb-6">Contacto</h2>
+      <p class="text-gray-400 mb-4">¿Querés trabajar conmigo? Mandame un mensaje 📩</p>
+      <a href="https://wa.me/5492991234567" target="_blank"
+        class="text-green-400 text-lg font-semibold underline">Contactar por WhatsApp</a>
+    </section>
 
-  <!-- STACK -->
-  <section id="stack" class="py-20 bg-black text-white px-4" data-aos="fade-up">
-    <h2 class="text-3xl text-center mb-12 font-bold">Stack Tecnológico</h2>
-    <div class="flex flex-wrap justify-center gap-6 text-green-400 text-4xl">
-      <i class="fab fa-python" title="Python"></i>
-      <i class="fab fa-js" title="JavaScript"></i>
-      <i class="fab fa-html5" title="HTML5"></i>
-      <i class="fab fa-css3-alt" title="CSS3"></i>
-      <i class="fab fa-docker" title="Docker"></i>
-      <i class="fab fa-github" title="GitHub"></i>
-      <i class="fas fa-database" title="Bases de Datos"></i>
-    </div>
-  </section>
+    <!-- FOOTER -->
+    <footer class="py-6 bg-black text-gray-600 text-center">
+      <p>&copy; 2025 Rodrigo González. Todos los derechos reservados.</p>
+    </footer>
+  </div>
 
-  <!-- CONTACTO -->
-  <section id="contacto" class="py-20 bg-gray-900 text-white px-4 text-center" data-aos="fade-up">
-    <h2 class="text-3xl font-bold mb-6">Contacto</h2>
-    <p class="text-gray-400 mb-4">¿Querés trabajar conmigo? Mandame un mensaje 📩</p>
-    <a href="https://wa.me/5492991234567" target="_blank" class="text-green-400 text-lg font-semibold underline">Contactar por WhatsApp</a>
-  </section>
+  <audio id="typingSound" src="https://cdn.pixabay.com/audio/2022/03/22/audio_44c8bfb63f.mp3"></audio>
 
-  <!-- FOOTER -->
-  <footer class="py-6 bg-black text-gray-600 text-center">
-    <p>&copy; 2025 Rodrigo González. Todos los derechos reservados.</p>
-  </footer>
-</div>
-
-<audio id="typingSound" src="https://cdn.pixabay.com/audio/2022/03/22/audio_44c8bfb63f.mp3"></audio>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-  const lines = [
-  "Microsoft Windows [Versión 10.0.19045.3693]",
-  "(c) Microsoft Corporation. Todos los derechos reservados.",
-  "",
-  "C:\\Users\\Rodrigo> echo Bienvenido al entorno de desarrollo",
-  "Bienvenido al entorno de desarrollo",
-  "C:\\Users\\Rodrigo> python --version",
-  "Python 3.11.5",
-  "C:\\Users\\Rodrigo> django-admin --version",
-  "4.2.7",
-  "C:\\Users\\Rodrigo> cls",
-  "",
-  "C:\\Users\\Rodrigo> # Iniciando portafolio interactivo...",
-  "C:\\Users\\Rodrigo> # Cargando proyectos, stack y contacto...",
-  "✅ Todo listo. Desplazate para ver más."
-];
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    const lines = [
+      "Microsoft Windows [Versión 10.0.19045.3693]",
+      "(c) Microsoft Corporation. Todos los derechos reservados.",
+      "",
+      "C:\\Users\\Rodrigo> echo Bienvenido al entorno de desarrollo",
+      "Bienvenido al entorno de desarrollo",
+      "C:\\Users\\Rodrigo> python --version",
+      "Python 3.11.5",
+      "C:\\Users\\Rodrigo> django-admin --version",
+      "4.2.7",
+      "C:\\Users\\Rodrigo> cls",
+      "",
+      "C:\\Users\\Rodrigo> # Iniciando portafolio interactivo...",
+      "C:\\Users\\Rodrigo> # Cargando proyectos, stack y contacto...",
+      "✅ Todo listo. Desplazate para ver más."
+    ];
 
 
-  const typingSound = document.getElementById("typingSound");
-  const consoleText = document.getElementById("consoleText");
-  const mainContent = document.getElementById("mainContent");
-  const consoleScreen = document.getElementById("consoleScreen");
-  let index = 0;
+    const typingSound = document.getElementById("typingSound");
+    const consoleText = document.getElementById("consoleText");
+    const mainContent = document.getElementById("mainContent");
+    const consoleScreen = document.getElementById("consoleScreen");
+    let index = 0;
 
-  function typeLine(line, callback) {
-    let charIndex = 0;
-    typingSound.currentTime = 0;
-    typingSound.play();
-    const interval = setInterval(() => {
-      consoleText.textContent += line[charIndex];
-      charIndex++;
-      if (charIndex === line.length) {
-        clearInterval(interval);
-        consoleText.textContent += "\n";
-        typingSound.pause();
-        setTimeout(callback, 500);
+    function typeLine(line, callback) {
+      if (line === "") {
+        consoleText.innerText += "\n";
+        setTimeout(callback, 300);
+        return;
       }
-    }, 40);
-  }
 
-  function startTyping() {
-    if (index < lines.length) {
-      typeLine(lines[index], () => {
-        index++;
-        startTyping();
+      let charIndex = 0;
+      typingSound.currentTime = 0;
+      typingSound.play();
+      const interval = setInterval(() => {
+        if (charIndex < line.length) {
+          consoleText.innerText += line[charIndex++];
+        } else {
+          clearInterval(interval);
+          consoleText.innerText += "\n";
+          typingSound.pause();
+          setTimeout(callback, 500);
+        }
+      }, 40);
+    }
+
+
+    function startTyping() {
+      if (index < lines.length) {
+        typeLine(lines[index], () => {
+          index++;
+          startTyping();
+        });
+      } else {
+        setTimeout(() => {
+          consoleScreen.classList.add("hidden");
+          mainContent.classList.remove("hidden-content");
+          document.body.style.overflow = 'auto';
+        }, 1000);
+      }
+    }
+
+    window.onload = startTyping;
+
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let particles = [];
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 2;
+        this.speedX = Math.random() - 0.5;
+        this.speedY = Math.random() - 0.5;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--particle-color').trim();
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 100; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
       });
-    } else {
-      setTimeout(() => {
-        consoleScreen.classList.add("hidden");
-        mainContent.classList.remove("hidden-content");
-        document.body.style.overflow = 'auto';
-      }, 1000);
+      requestAnimationFrame(animateParticles);
     }
-  }
 
-  window.onload = startTyping;
+    initParticles();
+    animateParticles();
 
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  function resizeCanvas() {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  let particles = [];
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.radius = Math.random() * 2;
-      this.speedX = Math.random() - 0.5;
-      this.speedY = Math.random() - 0.5;
-    }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--particle-color').trim();
-      ctx.fill();
-    }
-  }
-
-  function initParticles() {
-    particles = [];
-    for (let i = 0; i < 100; i++) {
-      particles.push(new Particle());
-    }
-  }
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
+    const toggleBtn = document.getElementById("toggleTheme");
+    toggleBtn.addEventListener("click", () => {
+      const current = document.body.getAttribute("data-theme");
+      const newTheme = current === "dark" ? "light" : "dark";
+      document.body.setAttribute("data-theme", newTheme);
     });
-    requestAnimationFrame(animateParticles);
-  }
-
-  initParticles();
-  animateParticles();
-
-  const toggleBtn = document.getElementById("toggleTheme");
-  toggleBtn.addEventListener("click", () => {
-    const current = document.body.getAttribute("data-theme");
-    const newTheme = current === "dark" ? "light" : "dark";
-    document.body.setAttribute("data-theme", newTheme);
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
