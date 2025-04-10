@@ -9,14 +9,16 @@
   <style>
     :root {
       --bg-color: #000;
-      --text-color: #00ffae;
+      --text-color: #ffffff;
       --shadow-color: #00ffae;
+      --particle-color: #ffffff;
     }
 
     [data-theme="light"] {
       --bg-color: #f9f9f9;
       --text-color: #111;
       --shadow-color: #555;
+      --particle-color: #000000;
     }
 
     body {
@@ -33,15 +35,69 @@
       text-shadow: 0 0 5px var(--shadow-color);
     }
 
-    .glitch:hover {
-      animation: glitch 1s infinite;
+    .glitch {
+      position: relative;
+      color: var(--text-color);
     }
 
-    @keyframes glitch {
-      0%, 100% { text-shadow: 1px 0 red, -1px 0 blue; }
-      20% { text-shadow: -1px 0 red, 1px 0 blue; }
-      40% { text-shadow: 1px 1px red, -1px -1px blue; }
-      60% { text-shadow: -1px 1px red, 1px -1px blue; }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+    }
+
+    .glitch::before {
+      animation: glitchTop 1s infinite linear alternate-reverse;
+      color: #0ff;
+      z-index: -1;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 1s infinite linear alternate-reverse;
+      color: #f0f;
+      z-index: -1;
+    }
+
+    @keyframes glitchTop {
+      0% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+      10% {
+        clip: rect(0, 9999px, 100%, 0);
+        transform: translate(-2px, -2px);
+      }
+      20% {
+        clip: rect(0, 9999px, 100%, 0);
+        transform: translate(2px, -1px);
+      }
+      100% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+    }
+
+    @keyframes glitchBottom {
+      0% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+      10% {
+        clip: rect(0, 9999px, 100%, 0);
+        transform: translate(2px, 2px);
+      }
+      20% {
+        clip: rect(0, 9999px, 100%, 0);
+        transform: translate(-2px, 1px);
+      }
+      100% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
     }
 
     .hidden-content {
@@ -51,7 +107,7 @@
 </head>
 <body data-theme="dark" class="transition duration-700 ease-in-out">
 
-<canvas id="particles" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
+<canvas id="particles" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
 
 <div id="consoleScreen" class="console p-6 h-screen flex items-center justify-center flex-col z-10 relative">
   <div id="consoleText" class="text-lg leading-relaxed max-w-2xl text-center"></div>
@@ -67,7 +123,7 @@
   <!-- HERO -->
   <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4">
     <div>
-      <h1 class="text-5xl sm:text-6xl font-bold glitch">Rodrigo González</h1>
+      <h1 class="text-5xl sm:text-6xl font-bold glitch" data-text="Rodrigo González">Rodrigo González</h1>
       <p class="mt-4 text-2xl text-green-400">Fullstack Developer</p>
       <p class="mt-2 text-lg">Python, Django, JS, CSS, SQL, Cloud ☁️</p>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
@@ -180,8 +236,13 @@
 <script>
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
+  function resizeCanvas() {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
   let particles = [];
 
   class Particle {
@@ -201,7 +262,7 @@
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'var(--text-color)';
+      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--particle-color').trim();
       ctx.fill();
     }
   }
