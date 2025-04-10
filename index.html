@@ -13,14 +13,12 @@
       --shadow-color: #00ffae;
       --particle-color: #ffffff;
     }
-
     [data-theme="light"] {
       --bg-color: #f9f9f9;
       --text-color: #111;
       --shadow-color: #555;
       --particle-color: #000000;
     }
-
     body {
       background: var(--bg-color);
       color: var(--text-color);
@@ -28,18 +26,15 @@
       overflow-x: hidden;
       transition: all 0.4s ease-in-out;
     }
-
     .console {
       white-space: pre-line;
       font-size: 1rem;
       text-shadow: 0 0 5px var(--shadow-color);
     }
-
     .glitch {
       position: relative;
       color: var(--text-color);
     }
-
     .glitch::before,
     .glitch::after {
       content: attr(data-text);
@@ -49,73 +44,46 @@
       overflow: hidden;
       clip: rect(0, 900px, 0, 0);
     }
-
     .glitch::before {
       animation: glitchTop 1s infinite linear alternate-reverse;
       color: #0ff;
       z-index: -1;
     }
-
     .glitch::after {
       animation: glitchBottom 1s infinite linear alternate-reverse;
       color: #f0f;
       z-index: -1;
     }
-
     @keyframes glitchTop {
-      0% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
-      10% {
-        clip: rect(0, 9999px, 100%, 0);
-        transform: translate(-2px, -2px);
-      }
-      20% {
-        clip: rect(0, 9999px, 100%, 0);
-        transform: translate(2px, -1px);
-      }
-      100% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
+      0% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+      10% { clip: rect(0, 9999px, 100%, 0); transform: translate(-2px, -2px); }
+      20% { transform: translate(2px, -1px); }
+      100% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
     }
-
     @keyframes glitchBottom {
-      0% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
-      10% {
-        clip: rect(0, 9999px, 100%, 0);
-        transform: translate(2px, 2px);
-      }
-      20% {
-        clip: rect(0, 9999px, 100%, 0);
-        transform: translate(-2px, 1px);
-      }
-      100% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
+      0% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
+      10% { clip: rect(0, 9999px, 100%, 0); transform: translate(2px, 2px); }
+      20% { transform: translate(-2px, 1px); }
+      100% { clip: rect(0, 9999px, 0, 0); transform: translate(0); }
     }
-
     .hidden-content {
       display: none;
     }
   </style>
 </head>
-<body data-theme="dark" class="transition duration-700 ease-in-out">
+<body data-theme="dark">
 
 <canvas id="particles" class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
 
+<!-- Consola de carga -->
 <div id="consoleScreen" class="console p-6 h-screen flex items-center justify-center flex-col z-10 relative">
   <div id="consoleText" class="text-lg leading-relaxed max-w-2xl text-center"></div>
 </div>
 
+<!-- Contenido principal -->
 <div id="mainContent" class="hidden-content z-20 relative">
 
-  <!-- TOGGLE THEME -->
+  <!-- Botón Tema -->
   <div class="fixed top-4 right-4 z-50">
     <button id="toggleTheme" class="bg-green-500 hover:bg-green-600 text-black px-4 py-2 rounded shadow transition">🌗 Cambiar Tema</button>
   </div>
@@ -179,8 +147,10 @@
   </footer>
 </div>
 
+<!-- AUDIO -->
 <audio id="typingSound" src="https://cdn.pixabay.com/audio/2022/03/22/audio_44c8bfb63f.mp3"></audio>
 
+<!-- JS Carga -->
 <script>
   const lines = [
     "Rodrigo González - Fullstack Developer",
@@ -190,19 +160,16 @@
     "Conectando base de datos Postgres...",
     "✅ Sistema cargado. Bienvenido al universo de Rodrigo."
   ];
-
   const typingSound = document.getElementById("typingSound");
   const consoleText = document.getElementById("consoleText");
   const mainContent = document.getElementById("mainContent");
   const consoleScreen = document.getElementById("consoleScreen");
-
   let index = 0;
 
   function typeLine(line, callback) {
     let charIndex = 0;
     typingSound.currentTime = 0;
     typingSound.play();
-
     const interval = setInterval(() => {
       consoleText.textContent += line[charIndex];
       charIndex++;
@@ -233,6 +200,7 @@
   window.onload = startTyping;
 </script>
 
+<!-- JS Partículas -->
 <script>
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
@@ -287,6 +255,7 @@
   animateParticles();
 </script>
 
+<!-- JS Tema -->
 <script>
   const toggleBtn = document.getElementById("toggleTheme");
   toggleBtn.addEventListener("click", () => {
