@@ -67,18 +67,6 @@
       transform: rotateX(5deg) rotateY(5deg) scale(1.03);
       box-shadow: 0 20px 30px rgba(0, 255, 170, 0.3);
     }
-    #consoleText {
-      font-family: Consolas, monospace;
-      color: #33ff33;
-      background-color: #000;
-      padding: 1rem;
-      border-radius: 6px;
-      text-align: left;
-      white-space: pre-line;
-      width: 100%;
-      max-width: 700px;
-      box-shadow: 0 0 10px rgba(0, 255, 170, 0.2);
-    }
   </style>
 </head>
 <body data-theme="dark" class="transition duration-700 ease-in-out">
@@ -91,8 +79,79 @@
 
 <div id="mainContent" class="hidden-content z-20 relative">
 
-  <!-- (Tu contenido principal no ha sido modificado y se mantiene intacto) -->
+  <!-- TOGGLE THEME -->
+  <div class="fixed top-4 right-4 z-50">
+    <button id="toggleTheme" class="bg-green-500 hover:bg-green-600 text-black px-4 py-2 rounded shadow transition">🌗 Cambiar Tema</button>
+  </div>
 
+  <!-- HERO -->
+  <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4" data-aos="fade-up">
+    <div>
+      <h1 class="text-5xl sm:text-6xl font-bold glitch" data-text="Rodrigo González">Rodrigo González</h1>
+      <p class="mt-4 text-2xl text-green-400">Fullstack Developer</p>
+      
+      <!-- Redes sociales -->
+      <div class="mt-6 flex justify-center space-x-6 text-2xl text-green-400">
+        <a href="https://www.linkedin.com/in/rodrigo-gonzalez-61954b35b/" target="_blank" aria-label="LinkedIn" class="hover:text-white transition">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/rodriggonzalezm" target="_blank" aria-label="GitHub" class="hover:text-white transition">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+
+      <p class="mt-2 text-lg">Python, Django, JS, CSS, SQL, Cloud ☁️</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="#proyectos" class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded text-black font-semibold transition">Ver Proyectos</a>
+        <a href="#contacto" class="border border-green-400 px-6 py-2 rounded text-green-400 hover:bg-green-400 hover:text-black transition">Contacto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos" class="py-20 bg-gray-900 text-white px-4" data-aos="fade-up">
+    <h2 class="text-3xl text-center mb-12 font-bold">Proyectos Destacados</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <a href="https://www.kibirka.com.ar" target="_blank" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
+        <h3 class="text-xl font-bold">Kibirka E-commerce</h3>
+        <p class="text-gray-400 mt-2">Tienda sustentable con Django, carrito, geolocalización y diseño responsive.</p>
+      </a>
+      <a href="#hero" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
+        <h3 class="text-xl font-bold">Deloestegrowshop</h3>
+        <p class="text-gray-400 mt-2">Growshop profesional con carrito modal, animaciones y diseño impactante.</p>
+      </a>
+      <a href="https://www.ryrlogistics.cl" target="_blank" class="project-card bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-green-500 block">
+        <h3 class="text-xl font-bold">RYR Logistics</h3>
+        <p class="text-gray-400 mt-2">Portal para arriendo de camionetas y gestión logística.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" class="py-20 bg-black text-white px-4" data-aos="fade-up">
+    <h2 class="text-3xl text-center mb-12 font-bold">Stack Tecnológico</h2>
+    <div class="flex flex-wrap justify-center gap-6 text-green-400 text-4xl">
+      <i class="fab fa-python" title="Python"></i>
+      <i class="fab fa-js" title="JavaScript"></i>
+      <i class="fab fa-html5" title="HTML5"></i>
+      <i class="fab fa-css3-alt" title="CSS3"></i>
+      <i class="fab fa-docker" title="Docker"></i>
+      <i class="fab fa-github" title="GitHub"></i>
+      <i class="fas fa-database" title="Bases de Datos"></i>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="py-20 bg-gray-900 text-white px-4 text-center" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-6">Contacto</h2>
+    <p class="text-gray-400 mb-4">¿Querés trabajar conmigo? Mandame un mensaje 📩</p>
+    <a href="https://wa.me/5492991234567" target="_blank" class="text-green-400 text-lg font-semibold underline">Contactar por WhatsApp</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-6 bg-black text-gray-600 text-center">
+    <p>&copy; 2025 Rodrigo González. Todos los derechos reservados.</p>
+  </footer>
 </div>
 
 <audio id="typingSound" src="https://cdn.pixabay.com/audio/2022/03/22/audio_44c8bfb63f.mp3"></audio>
@@ -102,21 +161,22 @@
   AOS.init();
 
   const lines = [
-    "Microsoft Windows [Versión 10.0.19045.3693]",
-    "(c) Microsoft Corporation. Todos los derechos reservados.",
-    "",
-    "C:\\Users\\Rodrigo> echo Bienvenido al entorno de desarrollo",
-    "Bienvenido al entorno de desarrollo",
-    "C:\\Users\\Rodrigo> python --version",
-    "Python 3.11.5",
-    "C:\\Users\\Rodrigo> django-admin --version",
-    "4.2.7",
-    "C:\\Users\\Rodrigo> cls",
-    "",
-    "C:\\Users\\Rodrigo> # Iniciando portafolio interactivo...",
-    "C:\\Users\\Rodrigo> # Cargando proyectos, stack y contacto...",
-    "✅ Todo listo. Desplazate para ver más."
-  ];
+  "Microsoft Windows [Versión 10.0.19045.3693]",
+  "(c) Microsoft Corporation. Todos los derechos reservados.",
+  "",
+  "C:\\Users\\Rodrigo> echo Bienvenido al entorno de desarrollo",
+  "Bienvenido al entorno de desarrollo",
+  "C:\\Users\\Rodrigo> python --version",
+  "Python 3.11.5",
+  "C:\\Users\\Rodrigo> django-admin --version",
+  "4.2.7",
+  "C:\\Users\\Rodrigo> cls",
+  "",
+  "C:\\Users\\Rodrigo> # Iniciando portafolio interactivo...",
+  "C:\\Users\\Rodrigo> # Cargando proyectos, stack y contacto...",
+  "✅ Todo listo. Desplazate para ver más."
+];
+
 
   const typingSound = document.getElementById("typingSound");
   const consoleText = document.getElementById("consoleText");
@@ -156,6 +216,64 @@
   }
 
   window.onload = startTyping;
+
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  function resizeCanvas() {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let particles = [];
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.radius = Math.random() * 2;
+      this.speedX = Math.random() - 0.5;
+      this.speedY = Math.random() - 0.5;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--particle-color').trim();
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < 100; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+
+  initParticles();
+  animateParticles();
+
+  const toggleBtn = document.getElementById("toggleTheme");
+  toggleBtn.addEventListener("click", () => {
+    const current = document.body.getAttribute("data-theme");
+    const newTheme = current === "dark" ? "light" : "dark";
+    document.body.setAttribute("data-theme", newTheme);
+  });
 </script>
 
 </body>
