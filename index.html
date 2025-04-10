@@ -214,18 +214,17 @@
       "Microsoft Windows [Versión 10.0.19045.3693]",
       "(c) Microsoft Corporation. Todos los derechos reservados.",
       "",
-      "C:\\Users\\Rodrigo> echo Bienvenido al entorno de desarrollo",
-      "Bienvenido al entorno de desarrollo",
-      "C:\\Users\\Rodrigo> python --version",
-      "Python 3.11.5",
-      "C:\\Users\\Rodrigo> django-admin --version",
-      "4.2.7",
-      "C:\\Users\\Rodrigo> cls",
+      "C:\\Users\\Rodrigo> python -m venv env",
+      "C:\\Users\\Rodrigo> env\\Scripts\\activate",
+      "(env) C:\\Users\\Rodrigo> pip install django",
+      "Successfully installed Django 4.2.7",
+      "(env) C:\\Users\\Rodrigo> django-admin startproject portfolio",
+      "(env) C:\\Users\\Rodrigo\\portfolio> python manage.py runserver",
+      "Starting development server at http://127.0.0.1:8000/",
       "",
-      "C:\\Users\\Rodrigo> # Iniciando portafolio interactivo...",
-      "C:\\Users\\Rodrigo> # Cargando proyectos, stack y contacto...",
-      "✅ Todo listo. Desplazate para ver más."
+      "C:\\Users\\Rodrigo> Portafolio listo. Scroll para ver 👇"
     ];
+
 
 
     const typingSound = document.getElementById("typingSound");
@@ -270,7 +269,11 @@
           consoleScreen.classList.add("hidden");
           mainContent.classList.remove("hidden-content");
           document.body.style.overflow = 'auto';
+
+          // 🔽 Scroll automático al contenido
+          document.getElementById("hero").scrollIntoView({ behavior: "smooth" });
         }, 1000);
+
       }
     }
 
